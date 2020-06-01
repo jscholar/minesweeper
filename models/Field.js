@@ -1,28 +1,28 @@
 const randomizeArray = require('../utils/randomizeArray');
 
-class Board {
+class Field {
 
-  #board;
+  #field;
   #squaresLeft;
   #m; // Width
   #n; // Height
 
   /**
    * 
-   * @param {Number} m Width of the board
-   * @param {Number} n Height of the board
+   * @param {Number} m Width of the field
+   * @param {Number} n Height of the field
    */
   constructor(m, n) {
-    this.#board = [];
+    this.#field = [];
     this.#m = m;
     this.#n = n;
     for (let i = 0; i < n; i++) {
-      this.#board.push(new Array(m).fill(-1));
+      this.#field.push(new Array(m).fill(-1));
     }
   }
 
   /**
-   * @param {Number} mines Number of mines to place on new board
+   * @param {Number} mines Number of mines to place on new field
    */
   addMines(mines) {
     if (mines > (this.#m * this.#n)) {
@@ -31,13 +31,13 @@ class Board {
       return; 
     }
 
-    // Serialize board
+    // Serialize field
     let spots = [];
     for (let i = 0; i < this.#m * this.#n; i++) {
       spots.push(i);
     }
 
-    // Randomize board
+    // Randomize field
     randomizeArray(spots);
 
     // Set the first {mines} elements to be mines
@@ -45,7 +45,7 @@ class Board {
       const mine = spots[i];
       const row = Math.floor(mine / this.#m);
       const column = mine % this.#m;
-      this.#board[row][column] = -2;
+      this.#field[row][column] = -2;
     }
 
     this.#squaresLeft = m * n - mines;
@@ -57,4 +57,4 @@ class Board {
 
 }
 
-module.exports = Board;
+module.exports = Field;

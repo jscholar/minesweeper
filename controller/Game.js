@@ -1,10 +1,10 @@
 const readline = require("readline");
-const Board = require('../models/Board');
+const Field = require('../models/Field');
 
 const LEVELS = require('../constants/LEVELS');
 
 class Game {
-  board;
+  field;
   playing = false;
   
   constructor() {
@@ -32,8 +32,8 @@ class Game {
           this.startGame();
         } else {
           const { width, height, mines } = LEVELS[diff];
-          this.board = new Board(width, height);
-          this.board.addMines(mines);
+          this.field = new Field(width, height);
+          this.field.addMines(mines);
           playing = true;
           this.nextTurn();
         }

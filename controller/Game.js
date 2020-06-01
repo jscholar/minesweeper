@@ -13,7 +13,7 @@ class Game {
       output: process.stdout
     });
 
-
+    console.log('Welcome to Minesweeper, console edition!');
   }
 
   startGame() {

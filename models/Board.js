@@ -48,7 +48,7 @@ class Board {
       this.#board[row][column] = -2;
     }
 
-    this.#minesLeft = mines;
+    this.#squaresLeft = m * n - mines;
   }
 
   getSquaresLeft() {
